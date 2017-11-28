@@ -15,11 +15,14 @@ const serverInit = () => {
         socket.on(incomingCommands.initialized, () => {
             console.log(`initialized`);
             socket.emit(outgoingCommands.start)
+            // setTimeout(()=>{
+            //     console.log(`sending stop`);
+            //     socket.emit(outgoingCommands.stop)
+            // },1000)
         })
         socket.on(incomingCommands.error, err => console.log(`error: ${err}`))
         socket.on(incomingCommands.stopped, () => console.log('stopped'))
-        socket.on(incomingCommands.done, res => console.log(`done with message:${res} `));
-        socket.on(incomingCommands.stopped, () => console.log('stopped'));
+        socket.on(incomingCommands.done, res => console.log(`done with message:${JSON.stringify(res)} `));
         socket.on('disconnect', () => {
             console.log('disconnect!!!')
             // this._sockets = this._sockets.filter(s => s !== socket)
