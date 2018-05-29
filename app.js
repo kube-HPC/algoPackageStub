@@ -8,7 +8,7 @@ const io = require('socket.io')(server);
 const { incomingCommands, messages, outgoingCommands } = require('./stub');
 //app.listen(5000);
 const serverInit = () => {
-    server.listen(5000);
+    server.listen(process.env.WORKER_SOCKET_PORT || "3000");
     io.on('connection', (socket) => {
         // this._sockets.push(socket);
         socket.emit(outgoingCommands.initialize, messages.initMessage)
@@ -22,7 +22,10 @@ const serverInit = () => {
         })
         socket.on(incomingCommands.error, err => console.log(`error: ${JSON.stringify(err)}`))
         socket.on(incomingCommands.stopped, () => console.log('stopped'))
-        socket.on(incomingCommands.done, res => console.log(`done with message:${JSON.stringify(res)} `));
+        socket.on(incomingCommands.done, res => {
+            console.log(`done with message:${JSON.stringify(res)} `)
+
+        });
         socket.on('disconnect', () => {
             console.log('disconnect!!!')
             // this._sockets = this._sockets.filter(s => s !== socket)
