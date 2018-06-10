@@ -1,8 +1,8 @@
 const outgoingCommands = {
     initialize: "initialize",
     start: 'start',
-    stop: 'stop'
-
+    stop: 'stop',
+    exit: 'exit'
 }
 
 const incomingCommands = {
@@ -11,7 +11,7 @@ const incomingCommands = {
     stopped: 'stopped',
     progress: 'progress',
     error: 'errorMessage',
-    done: 'done'
+    done: 'done',
 }
 
 const messages = {

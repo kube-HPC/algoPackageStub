@@ -24,7 +24,7 @@ const serverInit = () => {
         socket.on(incomingCommands.stopped, () => console.log('stopped'))
         socket.on(incomingCommands.done, res => {
             console.log(`done with message:${JSON.stringify(res)} `)
-
+            // socket.emit(outgoingCommands.exit)
         });
         socket.on('disconnect', () => {
             console.log('disconnect!!!')
